@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../assets/to-do-list.css";
 
 interface ToDoListProps {
   tasks: string[];
@@ -10,7 +11,7 @@ function ToDoList({ tasks }: ToDoListProps) {
 
   const addTask = () => {
     if (newTask.trim() !== "") {
-      setTodoItems((prevTodoItems) => [...prevTodoItems, newTask]);
+      setTodoItems((todoItems) => [...todoItems, newTask]);
       setNewTask("");
     }
   };
@@ -22,13 +23,15 @@ function ToDoList({ tasks }: ToDoListProps) {
   };
 
   return (
-    <div>
-      <h2>Todo List</h2>
-      <ul>
+    <div className="todoDiv">
+      <h2 className="todoh1">Todo List</h2>
+      <ul className="todoUl">
         {todoItems.map((task, index) => (
-          <li key={index}>
+          <li className="todoli" key={index}>
             {task}
-            <button onClick={() => removeTask(index)}>Remove</button>
+            <button className="todoButton" onClick={() => removeTask(index)}>
+              Remove
+            </button>
           </li>
         ))}
       </ul>
@@ -38,7 +41,9 @@ function ToDoList({ tasks }: ToDoListProps) {
           value={newTask}
           onChange={(event) => setNewTask(event.target.value)}
         />
-        <button onClick={addTask}>Add</button>
+        <button className="todoButton" onClick={addTask}>
+          Add
+        </button>
       </div>
     </div>
   );
